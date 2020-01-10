@@ -1,0 +1,13 @@
+bin
+*release
+*debug
+*.sdf
+*.aps
+*.user
+*.opensdf
+*.suo
+*.tmp
+*.zip
+*.rar
+*.7z
+_*
