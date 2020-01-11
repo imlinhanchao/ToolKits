@@ -45,6 +45,9 @@
     <ClInclude Include="include\Base.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Ini.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="include\Base.cpp">
+      <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="include\Ini.cpp">
       <Filter>include</Filter>
     </ClCompile>
   </ItemGroup>
