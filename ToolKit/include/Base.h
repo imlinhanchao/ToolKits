@@ -2,17 +2,18 @@
 
 #include <shlwapi.h>
 
+namespace Lib {
 /*!
  * @class CBase
  * @brief Base Class, all class libraries will inherit from it
  * 
  * Used to get execute function error
  */
-class CBase
+class Base
 {
 public:
-	CBase(void);
-	~CBase(void);
+	Base(void);
+	~Base(void);
 
 	/*!
 	 * @brief GetLastError
@@ -61,3 +62,4 @@ protected:
 	DWORD m_nLastError;
 };
 
+}

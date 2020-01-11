@@ -2,18 +2,20 @@
 
 #include "Base.h"
 
+namespace Lib {
+
 /*!
  * @class CIni
  * @brief Initialization File operation class
  * 
  * Used to get read/write *.ini File
  */
-class CIni : public CBase
+class Ini : public Base
 {
 public:
-	CIni(void);
-	CIni(CString sPath);
-	~CIni(void);
+	Ini(void);
+	Ini(CString sPath);
+	~Ini(void);
 
 	/*!
 	 * @brief SetFile 
@@ -105,3 +107,4 @@ private:
 	CString m_sIniFile;
 };
 
+}

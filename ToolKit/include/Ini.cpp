@@ -1,26 +1,27 @@
 #include "StdAfx.h"
 #include "ini.h"
 
+namespace Lib {
 
-CIni::CIni(void)
+Ini::Ini(void)
 {
 }
 
-CIni::CIni( CString sPath )
+Ini::Ini( CString sPath )
 {
 	SetFile(sPath);
 }
 
-CIni::~CIni(void)
+Ini::~Ini(void)
 {
 }
 
-void CIni::SetFile( CString sPath )
+void Ini::SetFile( CString sPath )
 {
 	m_sIniFile = sPath;
 }
 
-bool CIni::GetAllSections( CString sSections[], int& nCount )
+bool Ini::GetAllSections( CString sSections[], int& nCount )
 {
 	const int nBufferSize = 10240;
 	TCHAR szValue[nBufferSize] = {0};
@@ -49,7 +50,7 @@ bool CIni::GetAllSections( CString sSections[], int& nCount )
 	return true;
 }
 
-bool CIni::GetAllKeys( CString sSection, CString sKeys[], int& nCount )
+bool Ini::GetAllKeys( CString sSection, CString sKeys[], int& nCount )
 {
 	const int nBufferSize = 10240;
 	TCHAR szValue[nBufferSize] = {0};
@@ -79,7 +80,7 @@ bool CIni::GetAllKeys( CString sSection, CString sKeys[], int& nCount )
 	return true;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, CString& sValue )
+bool Ini::Read( CString sSection, CString sKeyName, CString& sValue )
 {
 	DWORD dwBuffer = GetPrivateProfileString(sSection.GetBuffer(), sKeyName.GetBuffer(), NULL, sValue.GetBuffer(1024), 1024, m_sIniFile.GetBuffer());
 
@@ -97,7 +98,7 @@ bool CIni::Read( CString sSection, CString sKeyName, CString& sValue )
 	return false;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, DWORD& dwValue )
+bool Ini::Read( CString sSection, CString sKeyName, DWORD& dwValue )
 {
 	CString sValue;
 	bool bSuccess = Read(sSection, sKeyName, sValue);
@@ -106,7 +107,7 @@ bool CIni::Read( CString sSection, CString sKeyName, DWORD& dwValue )
 	return bSuccess;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, int& nValue )
+bool Ini::Read( CString sSection, CString sKeyName, int& nValue )
 {
 	CString sValue;
 	bool bSuccess = Read(sSection, sKeyName, sValue);
@@ -115,7 +116,7 @@ bool CIni::Read( CString sSection, CString sKeyName, int& nValue )
 	return bSuccess;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, UINT& nValue )
+bool Ini::Read( CString sSection, CString sKeyName, UINT& nValue )
 {
 	CString sValue;
 	bool bSuccess = Read(sSection, sKeyName, sValue);
@@ -124,7 +125,7 @@ bool CIni::Read( CString sSection, CString sKeyName, UINT& nValue )
 	return bSuccess;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, long& nValue )
+bool Ini::Read( CString sSection, CString sKeyName, long& nValue )
 {
 	CString sValue;
 	bool bSuccess = Read(sSection, sKeyName, sValue);
@@ -133,7 +134,7 @@ bool CIni::Read( CString sSection, CString sKeyName, long& nValue )
 	return bSuccess;
 }
 
-bool CIni::Read( CString sSection, CString sKeyName, bool& bValue )
+bool Ini::Read( CString sSection, CString sKeyName, bool& bValue )
 {
 	CString sValue;
 	bool bSuccess = Read(sSection, sKeyName, sValue);
@@ -142,7 +143,7 @@ bool CIni::Read( CString sSection, CString sKeyName, bool& bValue )
 	return bSuccess;
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, CString sValue )
+bool Ini::Write( CString sSection, CString sKeyName, CString sValue )
 {
 	bool bSuccess = WritePrivateProfileString(sSection.GetBuffer(), sKeyName.GetBuffer(), sValue.GetBuffer(), m_sIniFile.GetBuffer());
 
@@ -155,7 +156,7 @@ bool CIni::Write( CString sSection, CString sKeyName, CString sValue )
 	return bSuccess;
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, DWORD dwValue )
+bool Ini::Write( CString sSection, CString sKeyName, DWORD dwValue )
 {
 	CString sValue;
 	_ultot_s(dwValue, sValue.GetBuffer(100), 100, 10);
@@ -163,7 +164,7 @@ bool CIni::Write( CString sSection, CString sKeyName, DWORD dwValue )
 	return Write(sSection, sKeyName, sValue);
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, int nValue )
+bool Ini::Write( CString sSection, CString sKeyName, int nValue )
 {
 	CString sValue;
 	_itot_s(nValue, sValue.GetBuffer(100), 100, 10);
@@ -171,7 +172,7 @@ bool CIni::Write( CString sSection, CString sKeyName, int nValue )
 	return Write(sSection, sKeyName, sValue);
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, UINT nValue )
+bool Ini::Write( CString sSection, CString sKeyName, UINT nValue )
 {
 	CString sValue;
 	_ltot_s(nValue, sValue.GetBuffer(100), 100, 10);
@@ -179,7 +180,7 @@ bool CIni::Write( CString sSection, CString sKeyName, UINT nValue )
 	return Write(sSection, sKeyName, sValue);
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, long nValue )
+bool Ini::Write( CString sSection, CString sKeyName, long nValue )
 {
 	CString sValue;
 	_ltot_s(nValue, sValue.GetBuffer(100), 100, 10);
@@ -187,12 +188,12 @@ bool CIni::Write( CString sSection, CString sKeyName, long nValue )
 	return Write(sSection, sKeyName, sValue);
 }
 
-bool CIni::Write( CString sSection, CString sKeyName, bool bValue )
+bool Ini::Write( CString sSection, CString sKeyName, bool bValue )
 {
 	return Write(sSection, sKeyName, bValue ? _T("1") : _T("0"));
 }
 
-bool CIni::Remove( CString sSection, CString sKeyName )
+bool Ini::Remove( CString sSection, CString sKeyName )
 {
 	bool bSuccess = WritePrivateProfileString(sSection.GetBuffer(), sKeyName.GetBuffer(), NULL, m_sIniFile.GetBuffer());
 
@@ -204,7 +205,7 @@ bool CIni::Remove( CString sSection, CString sKeyName )
 	return bSuccess;
 }
 
-bool CIni::Remove( CString sSection )
+bool Ini::Remove( CString sSection )
 {
 	bool bSuccess = WritePrivateProfileString(sSection.GetBuffer(), NULL, NULL, m_sIniFile.GetBuffer());
 
@@ -215,3 +216,4 @@ bool CIni::Remove( CString sSection )
 	return bSuccess;
 }
 
+}

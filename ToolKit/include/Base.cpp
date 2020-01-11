@@ -1,28 +1,29 @@
 #include "StdAfx.h"
 #include "Base.h"
 
+namespace Lib {
 
-CBase::CBase(void)
+Base::Base(void)
 {
 	m_sLastError = _T("");
 	m_nLastError = 0;
 }
 
-CBase::~CBase(void)
+Base::~Base(void)
 {
 }
 
-CString CBase::GetLastErrorMsg()
+CString Base::GetLastErrorMsg()
 {
 	return  m_sLastError;
 }
 
-DWORD CBase::GetLastError()
+DWORD Base::GetLastError()
 {
 	return  m_nLastError;
 }
 
-CString CBase::FormatLastError( DWORD dwLastError )
+CString Base::FormatLastError( DWORD dwLastError )
 {
 	LPVOID lpMsgBuf;
 	CString sErrMsg = _T("");
@@ -43,7 +44,7 @@ CString CBase::FormatLastError( DWORD dwLastError )
 	return sErrMsg;
 }
 
-void CBase::GetSystemError()
+void Base::GetSystemError()
 {
 	LPVOID lpMsgBuf;
 	m_nLastError = ::GetLastError(); 
@@ -62,7 +63,7 @@ void CBase::GetSystemError()
 	LocalFree(lpMsgBuf);
 }
 
-void CBase::SetLastError( DWORD dwErrCode, CString sErrMsg )
+void Base::SetLastError( DWORD dwErrCode, CString sErrMsg )
 {
 	if (sErrMsg.IsEmpty()) {
 		m_nLastError = dwErrCode;
@@ -72,4 +73,6 @@ void CBase::SetLastError( DWORD dwErrCode, CString sErrMsg )
 
 	m_nLastError = 0x4000 + dwErrCode; // not system error
 	m_sLastError = sErrMsg;
+}
+
 }
