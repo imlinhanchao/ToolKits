@@ -5,7 +5,7 @@
 namespace Lib {
 
 /*!
- * @class CIni
+ * @class Ini
  * @brief Initialization File operation class
  * 
  * Used to get read/write *.ini File

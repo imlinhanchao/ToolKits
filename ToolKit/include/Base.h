@@ -3,8 +3,9 @@
 #include <shlwapi.h>
 
 namespace Lib {
+
 /*!
- * @class CBase
+ * @class Base
  * @brief Base Class, all class libraries will inherit from it
  * 
  * Used to get execute function error
