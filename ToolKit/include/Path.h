@@ -62,6 +62,7 @@ public:
 	 */
 	static CString Omit(CString sPath, int nSize);
 
+
 	/*!
 	 * @brief GetCurDirectory 
 	 * 
@@ -159,6 +160,14 @@ public:
 	static bool Exists(CString sPath);
 };
 
+/*!
+	* @brief _pr 
+	* 
+	* Stitching path macro define
+	* @param sPath The path of one.
+	* @param sPathNext The path of next. You can use `..` to indicate the parent directory
+	* @return CString The final path
+	*/
 #define _pr(_x_,_y_) Path::Resolve(_x_,_y_)
 
 }
