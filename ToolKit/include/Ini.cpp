@@ -37,7 +37,7 @@ bool Ini::GetAllSections( CString sSections[], int& nCount )
 
 	int nIndex = 0;
 	if(sSections != NULL) sSections[nIndex] = CString(szValue);
-	for (int nPos = 0; nPos < dwBuffer; nPos++)
+	for (DWORD nPos = 0; nPos < dwBuffer; nPos++)
 	{
 		if (szValue[nPos] == _T('\0'))
 		{
@@ -67,7 +67,7 @@ bool Ini::GetAllKeys( CString sSection, CString sKeys[], int& nCount )
 
 	int nIndex = 0;
 	if(sKeys != NULL) sKeys[nIndex] = CString(szValue);
-	for (int nPos = 0; nPos < dwBuffer; nPos++)
+	for (DWORD nPos = 0; nPos < dwBuffer; nPos++)
 	{
 		if (szValue[nPos] == _T('\0'))
 		{
@@ -190,7 +190,7 @@ bool Ini::Write( CString sSection, CString sKeyName, long nValue )
 
 bool Ini::Write( CString sSection, CString sKeyName, bool bValue )
 {
-	return Write(sSection, sKeyName, bValue ? _T("1") : _T("0"));
+	return Write(sSection, sKeyName, CString(bValue ? _T("1") : _T("0")));
 }
 
 bool Ini::Remove( CString sSection, CString sKeyName )
