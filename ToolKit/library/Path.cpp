@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "Path.h"
 #include <Shlwapi.h>
+#include "imagehlp.h"
+#pragma comment(lib, "imagehlp.lib")
 
 namespace Lib {
 
@@ -126,6 +128,83 @@ bool Path::Exists( CString sPath )
 	bool bExists = PathFileExists(sPath.GetBuffer());
 	sPath.ReleaseBuffer();
 	return bExists;
+}
+
+CString Path::Browse( LPCTSTR lpszFilter, LPCTSTR lpszDefExt, BOOL bOpen, LPCTSTR lpszFileName )
+{
+	CString sPathName = _T("");
+	CFileDialog dlg(bOpen, 
+		lpszDefExt,
+		lpszFileName, 
+		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_CREATEPROMPT | (bOpen ? OFN_FILEMUSTEXIST : 0),
+		lpszFilter, 
+		NULL);
+	if(dlg.DoModal() == IDOK)
+	{
+		sPathName = dlg.GetPathName();
+	}
+	return sPathName;
+}
+
+static int CALLBACK BrowseCallbackProc(HWND hWnd, UINT uMsg, LPARAM lParam, LPARAM lpData)
+{
+	switch(uMsg)
+	{
+	case BFFM_INITIALIZED:
+		::SendMessage(hWnd, BFFM_SETSELECTION, TRUE, (LPARAM)(LPTSTR)(LPCTSTR)lpData);
+		break;
+	case BFFM_SELCHANGED:
+		{
+			TCHAR szCurrent[MAX_PATH];   
+			SHGetPathFromIDList((LPCITEMIDLIST)lParam, szCurrent);   
+			::SendMessage(hWnd, BFFM_SETSTATUSTEXT, 0, (LPARAM)szCurrent);   
+		}
+		break;
+	default:
+		break;
+	}
+	return 0;   
+}
+
+CString Path::Folder( HWND hWnd, CString sRootPath/*=_T("")*/ )
+{
+	ASSERT(hWnd);
+
+	CString sPath = _T("");
+	LPITEMIDLIST pIdList = NULL; 
+	if (sRootPath.IsEmpty()) sRootPath = GetDesktopDirectory();
+
+	TCHAR szBuffer[MAX_PATH];  
+	ZeroMemory(szBuffer, MAX_PATH);  
+	_tcscpy(szBuffer, sRootPath.GetBuffer());
+	sRootPath.ReleaseBuffer();
+
+	BROWSEINFO bi; 
+	bi.hwndOwner      = hWnd;  
+	bi.pidlRoot       = NULL;  
+	bi.pszDisplayName = szBuffer;  
+	bi.lpszTitle      = _T("");  
+	bi.ulFlags        = BIF_EDITBOX | BIF_NEWDIALOGSTYLE;  
+	bi.lpfn           = BrowseCallbackProc;  
+	bi.lParam         = (LPARAM)szBuffer;  
+	bi.iImage         = 0;
+
+	if(NULL != (pIdList = SHBrowseForFolder(&bi)))  
+	{  
+		SHGetPathFromIDList(pIdList, sPath.GetBuffer(MAX_PATH));
+		sPath.ReleaseBuffer();
+	}
+
+	return sPath;
+}
+
+bool Path::Create( CString sPath )
+{
+	CString sDirectory = PathAddBackslash(sPath.GetBuffer());
+	sPath.ReleaseBuffer();
+
+	USES_CONVERSION;	
+	return MakeSureDirectoryPathExists(T2A(sDirectory));
 }
 
 }

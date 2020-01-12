@@ -158,6 +158,38 @@ public:
 	 * @return bool is exists or not
 	 */
 	static bool Exists(CString sPath);
+
+
+	/*!
+	 * @brief Browse 
+	 * 
+	 * Open a dialog to browse file
+	 * @param lpszFilter A series of string pairs that specify filters you can apply to the file.
+	 * @param lpszDefExt The default file name extension. If this parameter is NULL, no extension is appended.
+	 * @param bOpen Type of dialog box to create, TRUE to construct a File Open dialog box. Set it to FALSE to construct a File Save As dialog box.
+	 * @param lpszFileName The initial file name that appears in the Filename box. If NULL, no initial file name appears.
+	 * @return CString The file Path. User cancels if it's empty.
+	 */
+	static CString Browse(LPCTSTR lpszFilter, LPCTSTR lpszDefExt, BOOL bOpen, LPCTSTR lpszFileName);
+
+	/*!
+	 * @brief Folder 
+	 * 
+	 * Open a dialog to browse folder
+	 * @param hWnd A handle to the owner window for the dialog box.
+	 * @param sRootPath Specifies the path of a folder to select.
+	 * @return CString The final path
+	 */
+	static CString Folder(HWND hWnd, CString sRootPath=_T(""));
+
+	/*!
+	 * @brief Create
+	 * 
+	 * Creates all the directories in the specified path, beginning with the root.
+	 * @param sPath A valid path name. If the final component of the path is a directory, not a file name.
+	 * @return bool If the function succeeds, the return value is true;
+	 */
+	static bool Create(CString sPath);
 };
 
 /*!
