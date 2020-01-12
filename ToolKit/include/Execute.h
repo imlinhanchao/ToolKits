@@ -4,8 +4,18 @@ class CExecute
 {
 public:
 	CExecute(void);
+	CExecute(EXECUTE_ITEM item);
 	~CExecute(void);
 
-	static inline bool Exists(CString sName);
+	enum { ONCE = 0, LOOP, TIMES };
+
+	static bool Exists(CString sName);
+	static void Write(EXECUTE_ITEM item);
+	static EXECUTE_ITEM Read(CString sName);
+	static EXECUTE_LIST GetList(void);
+
+private:
+	static EXECUTE_MAP m_mapExecutes;
+	EXECUTE_ITEM m_execute;
 };
 

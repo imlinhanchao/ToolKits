@@ -12,11 +12,14 @@ typedef struct _EXECUTE_ITEM
 } EXECUTE_ITEM, *PEXECUTE_ITEM;
 
 typedef vector<EXECUTE_ITEM> EXECUTE_LIST, *PEXECUTE_LIST;
+typedef map<CString, EXECUTE_ITEM> EXECUTE_MAP, *PEXECUTE_MAP;
 
 typedef struct _HOTKEY_ITEM
 {
 	DWORD dwHotKey;
 	CString sName;
+	int nExecWay;
+	int nTimes;
 
 } HOTKEY_ITEM, *PHOTKEY_ITEM;
 

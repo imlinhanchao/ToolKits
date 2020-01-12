@@ -3,11 +3,11 @@
 class CConfig
 {
 public:
-	CConfig(void);
-	~CConfig(void);
-
 	static void Init(void);
 	static inline CString GetConfigPath(void);
 	static inline CString GetExecutePath(void);
+
+	static EXECUTE_ITEM ReadExecute(CString sName);
+	static void WriteExecute(EXECUTE_ITEM item);
 };
 
