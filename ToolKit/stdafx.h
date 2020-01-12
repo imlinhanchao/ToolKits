@@ -56,3 +56,9 @@
 #endif
 
 
+#include <vector>
+using namespace std;
+
+#include "library/Lib.h"
+
+#include "include/definition.h"

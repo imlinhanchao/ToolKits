@@ -5,6 +5,7 @@
 #include "ToolKit.h"
 #include "HotKeyListDlg.h"
 #include "afxdialogex.h"
+#include "ExecItemDlg.h"
 
 
 // CHotKeyListDlg dialog

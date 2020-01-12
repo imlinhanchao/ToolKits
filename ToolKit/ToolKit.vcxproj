@@ -102,8 +102,12 @@
   <ItemGroup>
     <ClInclude Include="ExecItemDlg.h" />
     <ClInclude Include="HotKeyListDlg.h" />
+    <ClInclude Include="include\Config.h" />
+    <ClInclude Include="include\definition.h" />
+    <ClInclude Include="include\Execute.h" />
     <ClInclude Include="library\Base.h" />
     <ClInclude Include="library\Ini.h" />
+    <ClInclude Include="library\Lib.h" />
     <ClInclude Include="library\Path.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -114,6 +118,8 @@
   <ItemGroup>
     <ClCompile Include="ExecItemDlg.cpp" />
     <ClCompile Include="HotKeyListDlg.cpp" />
+    <ClCompile Include="include\Config.cpp" />
+    <ClCompile Include="include\Execute.cpp" />
     <ClCompile Include="library\Base.cpp" />
     <ClCompile Include="library\Ini.cpp" />
     <ClCompile Include="library\Path.cpp" />

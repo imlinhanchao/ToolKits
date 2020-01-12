@@ -16,6 +16,16 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL OnInitDialog();
+	afx_msg void OnBnClickedBtnBrowse();
+	afx_msg void OnBnClickedBtnExecPath();
+	afx_msg void OnBnClickedOk();
 
 	DECLARE_MESSAGE_MAP()
+
+	void WriteUi(EXECUTE_ITEM item);
+	EXECUTE_ITEM ReadUi(void);
+
+public:
+	EXECUTE_ITEM m_exec;
 };
