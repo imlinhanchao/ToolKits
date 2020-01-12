@@ -102,9 +102,9 @@
   <ItemGroup>
     <ClInclude Include="ExecItemDlg.h" />
     <ClInclude Include="HotKeyListDlg.h" />
-    <ClInclude Include="include\Base.h" />
-    <ClInclude Include="include\Ini.h" />
-    <ClInclude Include="include\Path.h" />
+    <ClInclude Include="library\Base.h" />
+    <ClInclude Include="library\Ini.h" />
+    <ClInclude Include="library\Path.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -114,9 +114,9 @@
   <ItemGroup>
     <ClCompile Include="ExecItemDlg.cpp" />
     <ClCompile Include="HotKeyListDlg.cpp" />
-    <ClCompile Include="include\Base.cpp" />
-    <ClCompile Include="include\Ini.cpp" />
-    <ClCompile Include="include\Path.cpp" />
+    <ClCompile Include="library\Base.cpp" />
+    <ClCompile Include="library\Ini.cpp" />
+    <ClCompile Include="library\Path.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

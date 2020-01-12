@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="include">
+    <Filter Include="library">
       <UniqueIdentifier>{45d4445a-9ff5-498f-a0b3-1bff9054194f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -42,20 +42,20 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Base.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Ini.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Path.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="ExecItemDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HotKeyListDlg.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library\Base.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\Ini.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="library\Path.h">
+      <Filter>library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,20 +68,20 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\Base.cpp">
-      <Filter>include</Filter>
-    </ClCompile>
-    <ClCompile Include="include\Ini.cpp">
-      <Filter>include</Filter>
-    </ClCompile>
-    <ClCompile Include="include\Path.cpp">
-      <Filter>include</Filter>
-    </ClCompile>
     <ClCompile Include="ExecItemDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HotKeyListDlg.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="library\Base.cpp">
+      <Filter>library</Filter>
+    </ClCompile>
+    <ClCompile Include="library\Ini.cpp">
+      <Filter>library</Filter>
+    </ClCompile>
+    <ClCompile Include="library\Path.cpp">
+      <Filter>library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
