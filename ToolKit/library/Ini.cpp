@@ -160,6 +160,7 @@ bool Ini::Write( CString sSection, CString sKeyName, DWORD dwValue )
 {
 	CString sValue;
 	_ultot_s(dwValue, sValue.GetBuffer(100), 100, 10);
+	sValue.ReleaseBuffer();
 
 	return Write(sSection, sKeyName, sValue);
 }
@@ -168,6 +169,7 @@ bool Ini::Write( CString sSection, CString sKeyName, int nValue )
 {
 	CString sValue;
 	_itot_s(nValue, sValue.GetBuffer(100), 100, 10);
+	sValue.ReleaseBuffer();
 
 	return Write(sSection, sKeyName, sValue);
 }
@@ -176,6 +178,7 @@ bool Ini::Write( CString sSection, CString sKeyName, UINT nValue )
 {
 	CString sValue;
 	_ltot_s(nValue, sValue.GetBuffer(100), 100, 10);
+	sValue.ReleaseBuffer();
 
 	return Write(sSection, sKeyName, sValue);
 }
@@ -184,6 +187,7 @@ bool Ini::Write( CString sSection, CString sKeyName, long nValue )
 {
 	CString sValue;
 	_ltot_s(nValue, sValue.GetBuffer(100), 100, 10);
+	sValue.ReleaseBuffer();
 
 	return Write(sSection, sKeyName, sValue);
 }
