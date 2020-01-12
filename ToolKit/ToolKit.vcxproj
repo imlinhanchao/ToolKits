@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -76,6 +76,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)library</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -101,11 +102,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExecItemDlg.h" />
+    <ClInclude Include="ExecListDlg.h" />
     <ClInclude Include="HotKeyListDlg.h" />
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\definition.h" />
     <ClInclude Include="include\Execute.h" />
     <ClInclude Include="library\Base.h" />
+    <ClInclude Include="library\Cvt.h" />
     <ClInclude Include="library\Ini.h" />
     <ClInclude Include="library\Lib.h" />
     <ClInclude Include="library\Path.h" />
@@ -117,10 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ExecItemDlg.cpp" />
+    <ClCompile Include="ExecListDlg.cpp" />
     <ClCompile Include="HotKeyListDlg.cpp" />
     <ClCompile Include="include\Config.cpp" />
     <ClCompile Include="include\Execute.cpp" />
     <ClCompile Include="library\Base.cpp" />
+    <ClCompile Include="library\Cvt.cpp" />
     <ClCompile Include="library\Ini.cpp" />
     <ClCompile Include="library\Path.cpp" />
     <ClCompile Include="stdafx.cpp">

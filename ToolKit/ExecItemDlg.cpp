@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CExecItemDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_BROWSE, &CExecItemDlg::OnBnClickedBtnBrowse)
 	ON_BN_CLICKED(IDC_BTN_EXEC_PATH, &CExecItemDlg::OnBnClickedBtnExecPath)
 	ON_BN_CLICKED(IDOK, &CExecItemDlg::OnBnClickedOk)
+	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_DELAY, &CExecItemDlg::OnDeltaposSpinDelay)
 END_MESSAGE_MAP()
 
 BOOL CExecItemDlg::OnInitDialog()
@@ -38,6 +39,11 @@ BOOL CExecItemDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	WriteUi(m_exec);
+	m_bModify = !m_exec.sName.IsEmpty();
+	if (m_bModify)
+	{
+		SetWindowText(_T("Modify Execute ") + m_exec.sName);
+	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
@@ -82,8 +88,6 @@ EXECUTE_ITEM CExecItemDlg::ReadUi( void )
 	return item;
 }
 
-
-
 void CExecItemDlg::OnBnClickedOk()
 {
 	EXECUTE_ITEM exec = ReadUi();
@@ -91,5 +95,26 @@ void CExecItemDlg::OnBnClickedOk()
 		MessageBox(_T("The Execute Name ") + exec.sName + _T(" was exists."), _T("Execute Exists"), MB_OK | MB_ICONWARNING);
 		return;
 	}
+	m_exec = exec;
 	CDialogEx::OnOK();
+}
+
+
+void CExecItemDlg::OnDeltaposSpinDelay(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
+
+	int nDelay = GetDlgItemInt(IDC_EDIT_DELAY);
+
+	if(pNMUpDown->iDelta >= 0)
+	{
+		if(nDelay > 0) nDelay--;
+	}
+	else if(pNMUpDown->iDelta < 0)
+	{
+		nDelay++;
+	}
+
+	SetDlgItemInt(IDC_EDIT_DELAY, nDelay);
+	*pResult = 0;
 }

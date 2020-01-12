@@ -57,6 +57,7 @@
 
 
 #include <vector>
+#include <map>
 using namespace std;
 
 #include "library/Lib.h"

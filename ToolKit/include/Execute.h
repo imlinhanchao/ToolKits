@@ -9,6 +9,7 @@ public:
 
 	enum { ONCE = 0, LOOP, TIMES };
 
+	static EXECUTE_MAP Load(void);
 	static bool Exists(CString sName);
 	static void Write(EXECUTE_ITEM item);
 	static EXECUTE_ITEM Read(CString sName);

@@ -72,6 +72,12 @@
     <ClInclude Include="include\Execute.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="ExecListDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library\Cvt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -103,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="include\Execute.cpp">
       <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecListDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="library\Cvt.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,22 @@ CExecute::~CExecute(void)
 {
 }
 
+EXECUTE_MAP CExecute::Load( void )
+{
+	vector<CString> lstPath;
+	lstPath = Path::Traversing(CConfig::GetExecutePath());
+	for (size_t i = 0; i < lstPath.size(); i++)
+	{
+		CString sName = Path::GetFileName(lstPath.at(i));
+		sName.Replace(_T(".ini"), _T(""));
+
+		EXECUTE_ITEM item = CConfig::ReadExecute(sName);
+		m_mapExecutes[item.sName] = item;
+	}
+
+	return m_mapExecutes;
+}
+
 bool CExecute::Exists( CString sName )
 {
 	return Path::Exists(_pr(CConfig::GetExecutePath(), sName + _T(".ini")));

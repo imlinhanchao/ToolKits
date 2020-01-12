@@ -6,7 +6,9 @@
 #include "ToolKit.h"
 #include "ToolKitDlg.h"
 #include "afxdialogex.h"
+#include "ExecItemDlg.h"
 #include "HotKeyListDlg.h"
+#include "ExecListDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -67,6 +69,7 @@ BEGIN_MESSAGE_MAP(CToolKitDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_FEATURE, &CToolKitDlg::OnTcnSelchangeTabFeature)
+	ON_BN_CLICKED(IDC_BTN_EXECUTE, &CToolKitDlg::OnBnClickedBtnExecute)
 END_MESSAGE_MAP()
 
 
@@ -101,6 +104,8 @@ BOOL CToolKitDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
+	CConfig::Init();
+	CExecute::Load();
 	InitTab();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -158,7 +163,10 @@ HCURSOR CToolKitDlg::OnQueryDragIcon()
 void CToolKitDlg::OnTcnSelchangeTabFeature(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	m_nCurPage = m_TabCtrl.GetCurSel();
-	m_pTabDlg[m_nCurPage]->ShowWindow(SW_SHOW);
+	for (int i = 0; i < DLG_QTY; i++)
+	{
+		m_pTabDlg[i]->ShowWindow(i == m_nCurPage ? SW_SHOW : SW_HIDE);
+	}
 	*pResult = 0;
 }
 
@@ -166,14 +174,17 @@ void CToolKitDlg::InitTab( void )
 {
 	const TCHAR* szTabTitles[DLG_QTY] = {
 		_T("HotKeys"),
+		_T("Execute"),
 	};
 
 	CDialogEx* Dialogs[DLG_QTY] = {
 		new CHotKeyListDlg,
+		new CExecListDlg,
 	};
 
 	DWORD dwDialogID[DLG_QTY] = {
-		IDD_DLG_HOTKEYS
+		IDD_DLG_HOTKEYS,
+		IDD_DLG_EXECS,
 	};
 
 	CRect rc;
@@ -185,7 +196,7 @@ void CToolKitDlg::InitTab( void )
 	rc.left	  += 2; 
 	rc.right  -= 4;
 
-	for (int i  = 0; i < DLG_QTY; i++)
+	for (int i = 0; i < DLG_QTY; i++)
 	{
 		m_TabCtrl.InsertItem(i, szTabTitles[i]);
 		m_pTabDlg[i] = Dialogs[i];
@@ -195,4 +206,12 @@ void CToolKitDlg::InitTab( void )
 	}
 
 	m_pTabDlg[0]->ShowWindow(SW_SHOW);
+}
+
+void CToolKitDlg::OnBnClickedBtnExecute()
+{
+	CExecItemDlg ExecDlg;
+	if(IDOK != ExecDlg.DoModal()) return;
+
+	CExecute::Write(ExecDlg.m_exec);
 }

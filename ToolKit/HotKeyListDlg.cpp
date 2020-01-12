@@ -5,7 +5,6 @@
 #include "ToolKit.h"
 #include "HotKeyListDlg.h"
 #include "afxdialogex.h"
-#include "ExecItemDlg.h"
 
 
 // CHotKeyListDlg dialog
@@ -65,6 +64,6 @@ void CHotKeyListDlg::InitList( void )
 	int nIndex = 0;
 	m_List.InsertColumn(nIndex++, _T("Hot Key"),	LVCFMT_LEFT, nColInterval);
 	m_List.InsertColumn(nIndex++, _T("Execute"),	LVCFMT_LEFT, nColInterval);
-	m_List.InsertColumn(nIndex++, _T("Program"),	LVCFMT_LEFT, nColInterval);
+	m_List.InsertColumn(nIndex++, _T("Exec Way"),	LVCFMT_LEFT, nColInterval);
 }
 
