@@ -123,6 +123,13 @@ bool Path::IsDirectory( CString sPath )
 	return bDirectory;
 }
 
+bool Path::IsEmpty( CString sPath )
+{
+	bool bEmpty = PathIsDirectoryEmpty(sPath.GetBuffer());
+	sPath.ReleaseBuffer();
+	return bEmpty;
+}
+
 bool Path::Exists( CString sPath )
 {
 	bool bExists = PathFileExists(sPath.GetBuffer());
@@ -196,6 +203,45 @@ CString Path::Folder( HWND hWnd, CString sRootPath/*=_T("")*/ )
 	}
 
 	return sPath;
+}
+
+vector<CString> Path::Traversing( CString sDirectory, FILITER filter/*=NULL*/ )
+{
+	vector<CString> lstPath;
+
+	PathAddBackslash(sDirectory.GetBuffer(sDirectory.GetLength() + 1));
+	sDirectory.ReleaseBuffer();
+
+	if(!sDirectory.IsEmpty() && Exists(sDirectory) && !IsEmpty(sDirectory))
+	{
+		CFileFind ff;     
+		BOOL bFound  = ff.FindFile(sDirectory + _T("*"), 0);    
+		while(bFound)     
+		{     
+			bFound = ff.FindNextFile();  
+			if(ff.IsDots())
+			{
+				continue;
+			}
+
+			SetFileAttributes(ff.GetFilePath(), FILE_ATTRIBUTE_NORMAL);
+			CString sPath = ff.GetFilePath();
+			if(ff.IsDirectory())       
+			{      
+				if (filter != NULL && !filter(sPath)) continue;
+				vector<CString> lstPathEx = Traversing(sPath, filter);
+				lstPath.insert(lstPath.begin(), lstPathEx.begin(), lstPathEx.end());
+			}     
+			else  
+			{    
+				if (filter != NULL && !filter(sPath)) continue;
+				lstPath.push_back(sPath);
+			}     
+		}     
+		ff.Close();
+		return lstPath;
+	}
+	return lstPath;
 }
 
 bool Path::Create( CString sPath )

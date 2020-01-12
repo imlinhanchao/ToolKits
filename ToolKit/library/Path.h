@@ -4,6 +4,8 @@
 
 namespace Lib {
 
+typedef bool (WINAPI * FILITER)(CString);
+
 /*!
  * @class Path
  * @brief Path Tools
@@ -147,15 +149,23 @@ public:
 	 * @brief IsDirectory 
 	 * 
 	 * Check Path is directory or not
-	 * @return bool is directory or not
+	 * @return bool Is directory or not
 	 */
 	static bool IsDirectory(CString sPath);
+
+	/*!
+	 * @brief IsDirectory 
+	 * 
+	 * Check directory is empty or not
+	 * @return bool Is empty or not
+	 */
+	static bool IsEmpty(CString sPath);
 
 	/*!
 	 * @brief Exists 
 	 * 
 	 * Check Path is exists or not
-	 * @return bool is exists or not
+	 * @return bool Is exists or not
 	 */
 	static bool Exists(CString sPath);
 
@@ -181,6 +191,16 @@ public:
 	 * @return CString The final path
 	 */
 	static CString Folder(HWND hWnd, CString sRootPath=_T(""));
+
+	/*!
+	 * @brief Traversing 
+	 * 
+	 * Traversing folder and get file list
+	 * @param sDirectory The folder to traversing.
+	 * @param filter A Callback used to check file. It will be skip file/folder when return false
+	 * @return CString The final path
+	 */
+	static vector<CString> Path::Traversing(CString sDirectory, FILITER filter=NULL);
 
 	/*!
 	 * @brief Create
