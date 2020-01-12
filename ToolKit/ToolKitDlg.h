@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxcmn.h"
 
 
 // CToolKitDlg dialog
@@ -14,6 +15,8 @@ public:
 
 // Dialog Data
 	enum { IDD = IDD_TOOLKIT_DIALOG };
+// Tab Dialog ID
+	enum { DLG_HOKEYS = 0, DLG_QTY };
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
@@ -28,5 +31,13 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnTcnSelchangeTabFeature(NMHDR *pNMHDR, LRESULT *pResult);
 	DECLARE_MESSAGE_MAP()
+
+	void InitTab(void);
+
+	CDialogEx*	m_pTabDlg[DLG_QTY];
+	CTabCtrl	m_TabCtrl;
+	int			m_nCurPage;
+
 };

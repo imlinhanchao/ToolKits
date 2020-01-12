@@ -6,6 +6,7 @@
 #include "ToolKit.h"
 #include "ToolKitDlg.h"
 #include "afxdialogex.h"
+#include "HotKeyListDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,17 +53,20 @@ CToolKitDlg::CToolKitDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CToolKitDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_nCurPage = 0;
 }
 
 void CToolKitDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_TAB_FEATURE, m_TabCtrl);
 }
 
 BEGIN_MESSAGE_MAP(CToolKitDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_FEATURE, &CToolKitDlg::OnTcnSelchangeTabFeature)
 END_MESSAGE_MAP()
 
 
@@ -97,7 +101,7 @@ BOOL CToolKitDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
+	InitTab();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -151,3 +155,44 @@ HCURSOR CToolKitDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+void CToolKitDlg::OnTcnSelchangeTabFeature(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	m_nCurPage = m_TabCtrl.GetCurSel();
+	m_pTabDlg[m_nCurPage]->ShowWindow(SW_SHOW);
+	*pResult = 0;
+}
+
+void CToolKitDlg::InitTab( void )
+{
+	const TCHAR* szTabTitles[DLG_QTY] = {
+		_T("HotKeys"),
+	};
+
+	CDialogEx* Dialogs[DLG_QTY] = {
+		new CHotKeyListDlg,
+	};
+
+	DWORD dwDialogID[DLG_QTY] = {
+		IDD_DLG_HOTKEYS
+	};
+
+	CRect rc;
+	CRect rcItem;
+	m_TabCtrl.GetClientRect(&rc);
+	m_TabCtrl.GetItemRect(0, rcItem);
+	rc.top	  += rcItem.bottom + 2; 
+	rc.bottom -= 4; 
+	rc.left	  += 2; 
+	rc.right  -= 4;
+
+	for (int i  = 0; i < DLG_QTY; i++)
+	{
+		m_TabCtrl.InsertItem(i, szTabTitles[i]);
+		m_pTabDlg[i] = Dialogs[i];
+		m_pTabDlg[i]->Create(dwDialogID[i], &m_TabCtrl); 
+		m_pTabDlg[i]->ShowWindow(SW_HIDE);
+		m_pTabDlg[i]->MoveWindow(rc);
+	}
+
+	m_pTabDlg[0]->ShowWindow(SW_SHOW);
+}

@@ -100,6 +100,8 @@
     <None Include="res\ToolKit.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExecItemDlg.h" />
+    <ClInclude Include="HotKeyListDlg.h" />
     <ClInclude Include="include\Base.h" />
     <ClInclude Include="include\Ini.h" />
     <ClInclude Include="include\Path.h" />
@@ -110,6 +112,8 @@
     <ClInclude Include="ToolKitDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExecItemDlg.cpp" />
+    <ClCompile Include="HotKeyListDlg.cpp" />
     <ClCompile Include="include\Base.cpp" />
     <ClCompile Include="include\Ini.cpp" />
     <ClCompile Include="include\Path.cpp" />
@@ -126,4 +130,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ToolKit.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

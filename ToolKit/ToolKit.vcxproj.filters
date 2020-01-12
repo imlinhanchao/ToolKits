@@ -51,6 +51,12 @@
     <ClInclude Include="include\Path.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="ExecItemDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HotKeyListDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -70,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="include\Path.cpp">
       <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecItemDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HotKeyListDlg.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
