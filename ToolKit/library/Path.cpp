@@ -29,7 +29,7 @@ CString Path::GetExtName( CString sPath )
 
 CString Path::Resolve( CString sPath, CString sPathNext )
 {
-	PathAddBackslash(sPath.GetBuffer());
+	PathAddBackslash(sPath.GetBuffer(sPath.GetLength() + 1));
 	sPath.ReleaseBuffer();
 	CString sPathFull = sPath + sPathNext;
 	CString sPathFinal;
@@ -38,7 +38,7 @@ CString Path::Resolve( CString sPath, CString sPathNext )
 	sPathFinal.ReleaseBuffer();
 	sPathFull.ReleaseBuffer();
 
-	if (IsDirectory(sPathFinal)) PathAddBackslash(sPathFinal.GetBuffer());
+	if (IsDirectory(sPathFinal)) PathAddBackslash(sPathFinal.GetBuffer(sPath.GetLength() + 1));
 	sPathFinal.ReleaseBuffer();
 
 	return sPathFinal;
@@ -200,7 +200,7 @@ CString Path::Folder( HWND hWnd, CString sRootPath/*=_T("")*/ )
 
 bool Path::Create( CString sPath )
 {
-	PathAddBackslash(sPath.GetBuffer());
+	PathAddBackslash(sPath.GetBuffer(sPath.GetLength() + 1));
 	sPath.ReleaseBuffer();
 
 	USES_CONVERSION;	
