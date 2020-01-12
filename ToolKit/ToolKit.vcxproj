@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)library</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="ExecItemDlg.h" />
     <ClInclude Include="ExecListDlg.h" />
+    <ClInclude Include="HotKeyDlg.h" />
     <ClInclude Include="HotKeyListDlg.h" />
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\definition.h" />
@@ -121,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="ExecItemDlg.cpp" />
     <ClCompile Include="ExecListDlg.cpp" />
+    <ClCompile Include="HotKeyDlg.cpp" />
     <ClCompile Include="HotKeyListDlg.cpp" />
     <ClCompile Include="include\Config.cpp" />
     <ClCompile Include="include\Execute.cpp" />

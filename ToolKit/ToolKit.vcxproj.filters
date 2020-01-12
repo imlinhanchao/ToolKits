@@ -76,6 +76,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="library\Cvt.h">
+      <Filter>library</Filter>
+    </ClInclude>
+    <ClInclude Include="HotKeyDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,6 +117,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="library\Cvt.cpp">
+      <Filter>library</Filter>
+    </ClCompile>
+    <ClCompile Include="HotKeyDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
