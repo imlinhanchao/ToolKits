@@ -47,8 +47,17 @@ BOOL CExecListDlg::OnInitDialog()
 
 BOOL CExecListDlg::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: Add your specialized code here and/or call the base class
-
+	if (GetFocus() == GetDlgItem(IDC_LIST) 
+	 && pMsg->message == WM_KEYDOWN 
+	 && pMsg->wParam == VK_DELETE
+	 && IDYES == MessageBox(_T("Are you sure remove this item?"), _T("Remove Program Setting"), MB_YESNO | MB_ICONQUESTION))
+	{
+		POSITION pos = m_List.GetFirstSelectedItemPosition();
+		int nRow = m_List.GetNextSelectedItem(pos);
+		CExecute::Remove(m_lstExec.at(nRow).sName);
+		m_lstExec.erase(m_lstExec.begin() + nRow);
+		m_List.DeleteItem(nRow);
+	}
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 

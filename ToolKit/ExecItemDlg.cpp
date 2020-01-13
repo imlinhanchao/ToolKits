@@ -91,6 +91,11 @@ EXECUTE_ITEM CExecItemDlg::ReadUi( void )
 void CExecItemDlg::OnBnClickedOk()
 {
 	EXECUTE_ITEM exec = ReadUi();
+	if (exec.sName.FindOneOf(_T("\\/:*?\"<>|")) >= 0) {
+		MessageBox(_T("The Name can't contain \\/:*?\"<>|"), _T(""), MB_OK | MB_ICONWARNING);
+		return;
+	}
+
 	if (CExecute::Exists(exec.sName)) {
 		MessageBox(_T("The Execute Name ") + exec.sName + _T(" was exists."), _T("Execute Exists"), MB_OK | MB_ICONWARNING);
 		return;
