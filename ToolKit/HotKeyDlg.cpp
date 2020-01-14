@@ -32,3 +32,14 @@ END_MESSAGE_MAP()
 
 
 // CHotKeyDlg message handlers
+
+
+BOOL CHotKeyDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// EXCEPTION: OCX Property Pages should return FALSE
+}

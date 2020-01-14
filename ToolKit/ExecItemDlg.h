@@ -19,6 +19,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedBtnBrowse();
 	afx_msg void OnBnClickedBtnExecPath();
+	afx_msg void OnDeltaposSpinDelay(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnBnClickedOk();
 
 	DECLARE_MESSAGE_MAP()
@@ -30,5 +31,4 @@ protected:
 
 public:
 	EXECUTE_ITEM m_exec;
-	afx_msg void OnDeltaposSpinDelay(NMHDR *pNMHDR, LRESULT *pResult);
 };
