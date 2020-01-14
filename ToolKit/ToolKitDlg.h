@@ -40,4 +40,6 @@ protected:
 	CDialogEx*	m_pTabDlg[DLG_QTY];
 	CTabCtrl	m_TabCtrl;
 	int			m_nCurPage;
+public:
+	afx_msg void OnBnClickedBtnHotkey();
 };

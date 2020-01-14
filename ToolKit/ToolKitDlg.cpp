@@ -7,6 +7,7 @@
 #include "ToolKitDlg.h"
 #include "afxdialogex.h"
 #include "ExecItemDlg.h"
+#include "HotKeyDlg.h"
 #include "HotKeyListDlg.h"
 #include "ExecListDlg.h"
 
@@ -70,6 +71,7 @@ BEGIN_MESSAGE_MAP(CToolKitDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_FEATURE, &CToolKitDlg::OnTcnSelchangeTabFeature)
 	ON_BN_CLICKED(IDC_BTN_EXECUTE, &CToolKitDlg::OnBnClickedBtnExecute)
+	ON_BN_CLICKED(IDC_BTN_HOTKEY, &CToolKitDlg::OnBnClickedBtnHotkey)
 END_MESSAGE_MAP()
 
 
@@ -214,4 +216,12 @@ void CToolKitDlg::OnBnClickedBtnExecute()
 	if(IDOK != ExecDlg.DoModal()) return;
 
 	CExecute::Write(ExecDlg.m_exec);
+}
+
+
+void CToolKitDlg::OnBnClickedBtnHotkey()
+{
+	CHotKeyDlg HotKeyDlg;
+	if(IDOK != HotKeyDlg.DoModal()) return;
+
 }
