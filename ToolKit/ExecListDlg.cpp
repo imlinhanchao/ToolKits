@@ -50,14 +50,28 @@ BOOL CExecListDlg::PreTranslateMessage(MSG* pMsg)
 	if (GetFocus() == GetDlgItem(IDC_LIST) 
 	 && pMsg->message == WM_KEYDOWN 
 	 && pMsg->wParam == VK_DELETE
-	 && IDYES == MessageBox(_T("Are you sure remove this item?"), _T("Remove Program Setting"), MB_YESNO | MB_ICONQUESTION))
+	 && IDYES == MessageBox(_T("Are you sure remove there items?"), _T("Remove Program Setting"), MB_YESNO | MB_ICONQUESTION))
 	{
 		POSITION pos = m_List.GetFirstSelectedItemPosition();
-		int nRow = m_List.GetNextSelectedItem(pos);
-		CExecute::Remove(m_lstExec.at(nRow).sName);
-		m_lstExec.erase(m_lstExec.begin() + nRow);
-		m_List.DeleteItem(nRow);
+		int nRow = -1, nCount = 0;
+		while(pos)
+		{
+			nRow = m_List.GetNextSelectedItem(pos);
+			nRow -= nCount;
+			if (nRow < 0) break;
+			CExecute::Remove(m_lstExec.at(nRow).sName);
+			m_lstExec.erase(m_lstExec.begin() + nRow);
+			m_List.DeleteItem(nRow);
+			nCount ++;
+		}
 	}
+
+	if (pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_F5) 
+	{
+		CExecute::Load();
+		ListRefresh();
+	}
+
 	return CDialogEx::PreTranslateMessage(pMsg);
 }
 

@@ -18,6 +18,7 @@ CExecute::~CExecute(void)
 
 EXECUTE_MAP CExecute::Load( void )
 {
+	m_mapExecutes.clear();
 	vector<CString> lstPath;
 	lstPath = Path::Traversing(CConfig::GetExecutePath());
 	for (size_t i = 0; i < lstPath.size(); i++)
