@@ -27,8 +27,6 @@ protected:
 	void WriteUi(EXECUTE_ITEM item);
 	EXECUTE_ITEM ReadUi(void);
 
-	bool	m_bModify;
-
 public:
 	EXECUTE_ITEM m_exec;
 };

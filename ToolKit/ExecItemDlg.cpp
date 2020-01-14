@@ -39,10 +39,10 @@ BOOL CExecItemDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	WriteUi(m_exec);
-	m_bModify = !m_exec.sName.IsEmpty();
-	if (m_bModify)
+	if (!m_exec.sName.IsEmpty())
 	{
 		SetWindowText(_T("Modify Execute ") + m_exec.sName);
+		SetDlgItemText(IDOK, _T("Modify"));
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -96,7 +96,7 @@ void CExecItemDlg::OnBnClickedOk()
 		return;
 	}
 
-	if (CExecute::Exists(exec.sName)) {
+	if (CExecute::Exists(exec.sName) && m_exec.sName != exec.sName) {
 		MessageBox(_T("The Execute Name ") + exec.sName + _T(" was exists."), _T("Execute Exists"), MB_OK | MB_ICONWARNING);
 		return;
 	}

@@ -94,6 +94,7 @@ void CExecListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
 	ExecDlg.m_exec = m_lstExec.at(nRow);
 	if(IDOK == ExecDlg.DoModal())
 	{
+		CExecute::Modify(m_lstExec.at(nRow).sName, ExecDlg.m_exec);
 		m_lstExec.at(nRow) = ExecDlg.m_exec;
 		ListModify(ExecDlg.m_exec, nRow);
 	}

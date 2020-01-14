@@ -63,6 +63,14 @@ EXECUTE_LIST CExecute::GetList( void )
 	return lstExecute;
 }
 
+bool CExecute::Modify( CString sName, EXECUTE_ITEM item )
+{
+	if (m_mapExecutes.find(sName) == m_mapExecutes.end()) return false;
+	m_mapExecutes.erase(m_mapExecutes.find(sName));
+	DeleteFile(_pr(CConfig::GetExecutePath(), sName + _T(".ini")));
+	Write(item);
+}
+
 bool CExecute::Remove( CString sName )
 {
 	if (m_mapExecutes.find(sName) == m_mapExecutes.end()) return false;

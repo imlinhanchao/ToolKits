@@ -13,6 +13,7 @@ public:
 	static bool Exists(CString sName);
 	static void Write(EXECUTE_ITEM item);
 	static EXECUTE_ITEM Read(CString sName);
+	static bool Modify(CString sName, EXECUTE_ITEM item);
 	static bool Remove(CString sName);
 	static EXECUTE_LIST GetList(void);
 
