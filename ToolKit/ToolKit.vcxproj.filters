@@ -81,6 +81,9 @@
     <ClInclude Include="HotKeyDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\HotKey.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -121,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="HotKeyDlg.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\HotKey.cpp">
+      <Filter>include</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

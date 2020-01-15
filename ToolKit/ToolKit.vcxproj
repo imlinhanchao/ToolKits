@@ -108,6 +108,7 @@
     <ClInclude Include="include\Config.h" />
     <ClInclude Include="include\definition.h" />
     <ClInclude Include="include\Execute.h" />
+    <ClInclude Include="include\HotKey.h" />
     <ClInclude Include="library\Base.h" />
     <ClInclude Include="library\Cvt.h" />
     <ClInclude Include="library\Ini.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="HotKeyListDlg.cpp" />
     <ClCompile Include="include\Config.cpp" />
     <ClCompile Include="include\Execute.cpp" />
+    <ClCompile Include="include\HotKey.cpp" />
     <ClCompile Include="library\Base.cpp" />
     <ClCompile Include="library\Cvt.cpp" />
     <ClCompile Include="library\Ini.cpp" />
