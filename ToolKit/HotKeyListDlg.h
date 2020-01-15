@@ -25,4 +25,13 @@ protected:
 	void InitList(void);
 
 	CListCtrl m_List;
+	HOTKEY_LIST m_lstHotKey;
+
+public:
+	void ListRefresh();
+	void ListPush(HOTKEY_ITEM item);
+	void ListModify(HOTKEY_ITEM item, int nRow);
+
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 };

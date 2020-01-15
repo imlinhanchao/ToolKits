@@ -55,6 +55,9 @@ typedef struct _HOTKEY_ITEM
 	}
 
 } HOTKEY_ITEM, *PHOTKEY_ITEM;
+typedef vector<HOTKEY_ITEM> HOTKEY_LIST, *PHOTKEY_LIST;
+typedef map<DWORD, HOTKEY_ITEM> HOTKEY_MAP, *PHOTKEY_MAP;
 
 #include "Config.h"
 #include "Execute.h"
+#include "HotKey.h"

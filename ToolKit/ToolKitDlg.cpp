@@ -108,6 +108,7 @@ BOOL CToolKitDlg::OnInitDialog()
 
 	CConfig::Init();
 	CExecute::Load();
+	CHotKey::Load();
 	InitTab();
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -216,6 +217,7 @@ void CToolKitDlg::OnBnClickedBtnExecute()
 	if(IDOK != ExecDlg.DoModal()) return;
 
 	CExecute::Write(ExecDlg.m_exec);
+	((CExecListDlg*)m_pTabDlg[DLG_EXEC])->ListPush(ExecDlg.m_exec);
 }
 
 
@@ -224,4 +226,6 @@ void CToolKitDlg::OnBnClickedBtnHotkey()
 	CHotKeyDlg HotKeyDlg;
 	if(IDOK != HotKeyDlg.DoModal()) return;
 
+	CHotKey::Write(HotKeyDlg.m_hotkey);
+	((CHotKeyListDlg*)m_pTabDlg[DLG_HOTKEY])->ListPush(HotKeyDlg.m_hotkey);
 }

@@ -16,7 +16,7 @@ public:
 // Dialog Data
 	enum { IDD = IDD_TOOLKIT_DIALOG };
 // Tab Dialog ID
-	enum { DLG_HOKEYS = 0, DLG_EXEC, DLG_QTY };
+	enum { DLG_HOTKEY = 0, DLG_EXEC, DLG_QTY };
 
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
