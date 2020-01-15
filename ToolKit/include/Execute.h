@@ -7,7 +7,8 @@ public:
 	CExecute(EXECUTE_ITEM item);
 	~CExecute(void);
 
-	enum { ONCE = 0, LOOP, TIMES };
+	static enum { ONCE = 0, LOOP, TIMES };
+	static CString WAY[];
 
 	static EXECUTE_MAP Load(void);
 	static bool Exists(CString sName);

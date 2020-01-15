@@ -2,6 +2,7 @@
 #include "Execute.h"
 
 map<CString, EXECUTE_ITEM> CExecute::m_mapExecutes;
+CString CExecute::WAY[] = { _T("Once"), _T("Loop"), _T("Times") };
 
 CExecute::CExecute(void)
 {
@@ -65,10 +66,9 @@ EXECUTE_LIST CExecute::GetList( void )
 
 bool CExecute::Modify( CString sName, EXECUTE_ITEM item )
 {
-	if (m_mapExecutes.find(sName) == m_mapExecutes.end()) return false;
-	m_mapExecutes.erase(m_mapExecutes.find(sName));
-	DeleteFile(_pr(CConfig::GetExecutePath(), sName + _T(".ini")));
-	Write(item);
+	if(Remove(sName))
+		Write(item);
+	return false;
 }
 
 bool CExecute::Remove( CString sName )
