@@ -72,13 +72,12 @@ void CHotKeyDlg::OnBnClickedOk()
 		return;
 	}
 
+	CHotKey::RemoveHotKey(m_hotkey.dwHotKey);
 	if (!CHotKey::SetHotKey(hotkey.dwHotKey))
 	{
 		MessageBox(_T("The HotKey ") + CHotKey::GetHotKeyName(hotkey.dwHotKey) + _T(" was exists in System."), _T("HotKey Exists"), MB_OK | MB_ICONWARNING);
 		return;
 	}
-
-	CHotKey::RemoveHotKey(m_hotkey.dwHotKey);
 
 	m_hotkey = hotkey;
 	CDialogEx::OnOK();
