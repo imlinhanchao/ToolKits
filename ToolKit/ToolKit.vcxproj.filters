@@ -84,6 +84,9 @@
     <ClInclude Include="include\HotKey.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="library\Shell.h">
+      <Filter>library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -127,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="include\HotKey.cpp">
       <Filter>include</Filter>
+    </ClCompile>
+    <ClCompile Include="library\Shell.cpp">
+      <Filter>library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
