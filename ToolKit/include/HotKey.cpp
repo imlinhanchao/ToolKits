@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "HotKey.h"
+#include "Execute.h"
 
 HOTKEY_MAP CHotKey::m_mapHotKey;
 
@@ -142,4 +143,13 @@ bool CHotKey::IsExtendedKey(DWORD vKey)
 		if (vKey == dwKeyCodes[i]) return true;
 	}
 	return false;
+}
+
+void CHotKey::Execute( DWORD nHotKeyId )
+{
+	if (!Exists(nHotKeyId)) return;
+	CString sName = m_mapHotKey[nHotKeyId].sName;
+	EXECUTE_ITEM item = CExecute::Read(sName);
+	m_mapHotKey[nHotKeyId].execute = CExecute(item);
+	m_mapHotKey[nHotKeyId].execute.Run();
 }

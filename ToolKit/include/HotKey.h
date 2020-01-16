@@ -17,6 +17,8 @@ public:
 	static bool SetHotKey(DWORD dwHotKey);
 	static CString GetHotKeyName(DWORD dwHotKey);
 
+	static void Execute(DWORD nHotKeyId);
+
 protected:
 	static UINT GetModifiers(DWORD dwHotKey);
 	static bool IsExtendedKey(DWORD vKey);

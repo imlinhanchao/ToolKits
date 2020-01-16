@@ -72,6 +72,7 @@ BEGIN_MESSAGE_MAP(CToolKitDlg, CDialogEx)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_FEATURE, &CToolKitDlg::OnTcnSelchangeTabFeature)
 	ON_BN_CLICKED(IDC_BTN_EXECUTE, &CToolKitDlg::OnBnClickedBtnExecute)
 	ON_BN_CLICKED(IDC_BTN_HOTKEY, &CToolKitDlg::OnBnClickedBtnHotkey)
+	ON_WM_HOTKEY()
 END_MESSAGE_MAP()
 
 
@@ -228,4 +229,12 @@ void CToolKitDlg::OnBnClickedBtnHotkey()
 
 	CHotKey::Write(HotKeyDlg.m_hotkey);
 	((CHotKeyListDlg*)m_pTabDlg[DLG_HOTKEY])->ListPush(HotKeyDlg.m_hotkey);
+}
+
+
+void CToolKitDlg::OnHotKey(UINT nHotKeyId, UINT nKey1, UINT nKey2)
+{
+	CHotKey::Execute(nHotKeyId);
+
+	CDialogEx::OnHotKey(nHotKeyId, nKey1, nKey2);
 }

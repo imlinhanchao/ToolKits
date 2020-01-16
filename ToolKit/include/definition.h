@@ -31,12 +31,15 @@ typedef struct _EXECUTE_ITEM
 typedef vector<EXECUTE_ITEM> EXECUTE_LIST, *PEXECUTE_LIST;
 typedef map<CString, EXECUTE_ITEM> EXECUTE_MAP, *PEXECUTE_MAP;
 
+#include "Execute.h"
+
 typedef struct _HOTKEY_ITEM
 {
 	DWORD dwHotKey;
 	CString sName;
 	int nExecWay;
 	int nTimes;
+	CExecute execute;
 
 	_HOTKEY_ITEM() {
 		dwHotKey = 0;
@@ -59,5 +62,4 @@ typedef vector<HOTKEY_ITEM> HOTKEY_LIST, *PHOTKEY_LIST;
 typedef map<DWORD, HOTKEY_ITEM> HOTKEY_MAP, *PHOTKEY_MAP;
 
 #include "Config.h"
-#include "Execute.h"
 #include "HotKey.h"

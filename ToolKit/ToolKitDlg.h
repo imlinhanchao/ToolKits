@@ -42,4 +42,5 @@ protected:
 	int			m_nCurPage;
 public:
 	afx_msg void OnBnClickedBtnHotkey();
+	afx_msg void OnHotKey(UINT nHotKeyId, UINT nKey1, UINT nKey2);
 };
