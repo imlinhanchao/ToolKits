@@ -42,7 +42,7 @@ bool Ini::GetAllSections( CString sSections[], int& nCount )
 		if (szValue[nPos] == _T('\0'))
 		{
 			nIndex++;
-			if (nIndex >= nCount) break;
+			if (nIndex >= nCount) continue;
 			if(sSections != NULL) sSections[nIndex] = CString(szValue + nPos + 1);
 		}
 	}
