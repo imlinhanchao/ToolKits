@@ -8,6 +8,7 @@ CExecute::CExecute(void)
 {
 }
 
+
 CExecute::CExecute( EXECUTE_ITEM item )
 {
 	m_execute = item;
@@ -15,6 +16,32 @@ CExecute::CExecute( EXECUTE_ITEM item )
 
 CExecute::~CExecute(void)
 {
+}
+
+CExecute& CExecute::operator = (const CExecute& exec)
+{
+	m_execute = exec.m_execute;
+	return *this;
+}
+
+void CExecute::Run( void )
+{
+	HANDLE hThread = CreateThread(NULL, 0, ExecThread, this, 0, NULL);
+
+	if (hThread != NULL) 
+	{
+		CloseHandle(hThread);
+	}
+}
+
+bool CExecute::IsRunning( void )
+{
+	return m_shell.IsRunning();
+}
+
+void CExecute::Stop( void )
+{
+	m_shell.Stop();
 }
 
 EXECUTE_MAP CExecute::Load( void )
@@ -77,4 +104,17 @@ bool CExecute::Remove( CString sName )
 	m_mapExecutes.erase(m_mapExecutes.find(sName));
 	DeleteFile(_pr(CConfig::GetExecutePath(), sName + _T(".ini")));
 	return true;
+}
+
+bool CExecute::_Run( void )
+{
+	Sleep(m_execute.dwDelay);
+	return m_shell.Execute(m_execute.sPath, m_execute.sArgv, m_execute.bVisible, m_execute.sExecPath);
+}
+
+DWORD CExecute::ExecThread( LPVOID lpParam )
+{
+	CExecute* pThis = (CExecute*) lpParam;
+	pThis->_Run();
+	return 0;
 }

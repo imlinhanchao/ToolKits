@@ -7,6 +7,12 @@ public:
 	CExecute(EXECUTE_ITEM item);
 	~CExecute(void);
 
+	CExecute& operator = (const CExecute& exec);
+
+	void Run(void);
+	bool IsRunning(void);
+	void Stop(void);
+
 	static enum { ONCE = 0, LOOP, TIMES };
 	static CString WAY[];
 
@@ -19,7 +25,12 @@ public:
 	static EXECUTE_LIST GetList(void);
 
 private:
-	static EXECUTE_MAP m_mapExecutes;
+	bool _Run(void);
+	static DWORD WINAPI ExecThread( LPVOID lpParam );
+
 	EXECUTE_ITEM m_execute;
+	Lib::Shell m_shell;
+
+	static EXECUTE_MAP m_mapExecutes;
 };
 
