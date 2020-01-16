@@ -45,7 +45,7 @@ void CExecute::Write( EXECUTE_ITEM item )
 	CConfig::WriteExecute(item);
 }
 
-inline EXECUTE_ITEM CExecute::Read( CString sName )
+EXECUTE_ITEM CExecute::Read( CString sName )
 {
 	if (m_mapExecutes.find(sName) == m_mapExecutes.end())
 		m_mapExecutes[sName] = CConfig::ReadExecute(sName);
