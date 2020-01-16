@@ -78,6 +78,8 @@ void CHotKeyDlg::OnBnClickedOk()
 		return;
 	}
 
+	CHotKey::RemoveHotKey(m_hotkey.dwHotKey);
+
 	m_hotkey = hotkey;
 	CDialogEx::OnOK();
 }
