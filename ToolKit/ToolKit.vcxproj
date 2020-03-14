@@ -115,6 +115,7 @@
     <ClInclude Include="library\Lib.h" />
     <ClInclude Include="library\Path.h" />
     <ClInclude Include="library\Shell.h" />
+    <ClInclude Include="Registry.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="library\Ini.cpp" />
     <ClCompile Include="library\Path.cpp" />
     <ClCompile Include="library\Shell.cpp" />
+    <ClCompile Include="Registry.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

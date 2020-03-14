@@ -87,6 +87,9 @@
     <ClInclude Include="library\Shell.h">
       <Filter>library</Filter>
     </ClInclude>
+    <ClInclude Include="Registry.h">
+      <Filter>library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ToolKit.cpp">
@@ -132,6 +135,9 @@
       <Filter>include</Filter>
     </ClCompile>
     <ClCompile Include="library\Shell.cpp">
+      <Filter>library</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry.cpp">
       <Filter>library</Filter>
     </ClCompile>
   </ItemGroup>
