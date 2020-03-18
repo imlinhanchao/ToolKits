@@ -109,7 +109,7 @@ bool CExecute::Remove( CString sName )
 bool CExecute::_Run( void )
 {
 	Sleep(m_execute.dwDelay);
-	return m_shell.Execute(m_execute.sPath, m_execute.sArgv, m_execute.bVisible, m_execute.sExecPath);
+	return m_shell.Execute(m_execute.sPath, m_execute.sArgv, Lib::Shell::APP, m_execute.bVisible, m_execute.sExecPath);
 }
 
 DWORD CExecute::ExecThread( LPVOID lpParam )

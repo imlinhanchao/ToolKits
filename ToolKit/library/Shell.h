@@ -10,6 +10,8 @@ public:
 	Shell(void);
 	~Shell(void);
 
+	typedef enum SHELL_TYPE { CONSOLE = 0, APP };
+
 	/*!
 	 * @brief Execute 
 	 * 
@@ -19,7 +21,7 @@ public:
 	 * @param bShow Show the program window or not. Not work for all program.
 	 * @return bool Execute success or not
 	 */
-	bool Execute(CString sPath, CString sCommand=_T(""), bool bShow=true, CString sWorkDirectory=_T(""));
+	bool Execute(CString sPath, CString sCommand=_T(""), SHELL_TYPE type=APP, bool bShow=true, CString sWorkDirectory=_T(""));
 
 	/*!
 	 * @brief IsRunning 
@@ -54,8 +56,11 @@ public:
 	HWND GetWnd(void);
 
 private:
-	static DWORD WINAPI ShellThread( LPVOID lpParam );
+	static DWORD WINAPI ShellThread(LPVOID lpParam);
 	static BOOL WINAPI EnumWindowsProc(HWND hWnd, LPARAM lParam);
+
+	bool ExecuteConsole(CString sPath, CString sCommand, bool bShow, CString sWorkDirectory);
+	bool ExecuteApplication(CString sPath, CString sCommand, bool bShow, CString sWorkDirectory);
 
 	PROCESS_INFORMATION m_pi; 
 	HANDLE m_hRead;
