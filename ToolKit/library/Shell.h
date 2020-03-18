@@ -18,6 +18,7 @@ public:
 	 * Execute a program
 	 * @param sPath The path of program.
 	 * @param sCommand The command line with program
+	 * @param type The type of program to execute
 	 * @param bShow Show the program window or not. Not work for all program.
 	 * @return bool Execute success or not
 	 */
