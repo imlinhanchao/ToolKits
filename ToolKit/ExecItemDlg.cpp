@@ -32,12 +32,14 @@ BEGIN_MESSAGE_MAP(CExecItemDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_EXEC_PATH, &CExecItemDlg::OnBnClickedBtnExecPath)
 	ON_BN_CLICKED(IDOK, &CExecItemDlg::OnBnClickedOk)
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_DELAY, &CExecItemDlg::OnDeltaposSpinDelay)
+	ON_BN_CLICKED(IDC_BTN_TRY, &CExecItemDlg::OnBnClickedBtnTry)
 END_MESSAGE_MAP()
 
 BOOL CExecItemDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
+	InitUi();
 	WriteUi(m_exec);
 	if (!m_exec.sName.IsEmpty())
 	{
@@ -66,26 +68,23 @@ void CExecItemDlg::OnBnClickedBtnExecPath()
 	SetDlgItemText(IDC_EDIT_EXEC, sPath);
 }
 
-void CExecItemDlg::WriteUi( EXECUTE_ITEM item )
+void CExecItemDlg::OnDeltaposSpinDelay(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	SetDlgItemText(IDC_EDIT_NAME, item.sName);
-	SetDlgItemText(IDC_EDIT_PATH, item.sPath);
-	SetDlgItemText(IDC_EDIT_ARGU, item.sArgv);
-	SetDlgItemText(IDC_EDIT_EXEC, item.sExecPath);
-	SetDlgItemInt(IDC_EDIT_DELAY, item.dwDelay);
-	((CButton*)GetDlgItem(IDC_CHK_VISIBLE))->SetCheck(item.bVisible ? BST_CHECKED : BST_UNCHECKED);
-}
+	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 
-EXECUTE_ITEM CExecItemDlg::ReadUi( void )
-{
-	EXECUTE_ITEM item;
-	GetDlgItemText(IDC_EDIT_NAME, item.sName);
-	GetDlgItemText(IDC_EDIT_PATH, item.sPath);
-	GetDlgItemText(IDC_EDIT_ARGU, item.sArgv);
-	GetDlgItemText(IDC_EDIT_EXEC, item.sExecPath);
-	item.dwDelay = GetDlgItemInt(IDC_EDIT_DELAY);
-	item.bVisible = ((CButton*)GetDlgItem(IDC_CHK_VISIBLE))->GetCheck() == BST_CHECKED;
-	return item;
+	int nDelay = GetDlgItemInt(IDC_EDIT_DELAY);
+
+	if(pNMUpDown->iDelta >= 0)
+	{
+		if(nDelay > 0) nDelay--;
+	}
+	else if(pNMUpDown->iDelta < 0)
+	{
+		nDelay++;
+	}
+
+	SetDlgItemInt(IDC_EDIT_DELAY, nDelay);
+	*pResult = 0;
 }
 
 void CExecItemDlg::OnBnClickedOk()
@@ -104,22 +103,42 @@ void CExecItemDlg::OnBnClickedOk()
 	CDialogEx::OnOK();
 }
 
-
-void CExecItemDlg::OnDeltaposSpinDelay(NMHDR *pNMHDR, LRESULT *pResult)
+void CExecItemDlg::WriteUi( EXECUTE_ITEM item )
 {
-	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
+	SetDlgItemText(IDC_EDIT_NAME, item.sName);
+	SetDlgItemText(IDC_EDIT_PATH, item.sPath);
+	SetDlgItemText(IDC_EDIT_ARGU, item.sArgv);
+	SetDlgItemText(IDC_EDIT_EXEC, item.sExecPath);
+	SetDlgItemInt(IDC_EDIT_DELAY, item.dwDelay);
+	((CComboBox*)GetDlgItem(IDC_CMB_TYPE))->SetCurSel(item.eType);
+	((CButton*)GetDlgItem(IDC_CHK_VISIBLE))->SetCheck(item.bVisible ? BST_CHECKED : BST_UNCHECKED);
+}
 
-	int nDelay = GetDlgItemInt(IDC_EDIT_DELAY);
+EXECUTE_ITEM CExecItemDlg::ReadUi( void )
+{
+	EXECUTE_ITEM item;
+	GetDlgItemText(IDC_EDIT_NAME, item.sName);
+	GetDlgItemText(IDC_EDIT_PATH, item.sPath);
+	GetDlgItemText(IDC_EDIT_ARGU, item.sArgv);
+	GetDlgItemText(IDC_EDIT_EXEC, item.sExecPath);
+	item.eType = (Lib::Shell::SHELL_TYPE)((CComboBox*)GetDlgItem(IDC_CMB_TYPE))->GetCurSel();
+	item.dwDelay = GetDlgItemInt(IDC_EDIT_DELAY);
+	item.bVisible = ((CButton*)GetDlgItem(IDC_CHK_VISIBLE))->GetCheck() == BST_CHECKED;
+	return item;
+}
 
-	if(pNMUpDown->iDelta >= 0)
-	{
-		if(nDelay > 0) nDelay--;
-	}
-	else if(pNMUpDown->iDelta < 0)
-	{
-		nDelay++;
-	}
+void CExecItemDlg::InitUi( void )
+{
+	((CComboBox*)GetDlgItem(IDC_CMB_TYPE))->AddString(_T("Console"));
+	((CComboBox*)GetDlgItem(IDC_CMB_TYPE))->AddString(_T("Application"));
+	((CComboBox*)GetDlgItem(IDC_CMB_TYPE))->SetCurSel(1);
+}
 
-	SetDlgItemInt(IDC_EDIT_DELAY, nDelay);
-	*pResult = 0;
+
+void CExecItemDlg::OnBnClickedBtnTry()
+{
+	CExecute exec(ReadUi());
+	exec.Run();
+	int nTimes = 10;
+	while (!exec.IsRunning() && nTimes--) Sleep(100);
 }

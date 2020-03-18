@@ -6,10 +6,12 @@ typedef struct _EXECUTE_ITEM
 	CString sPath;
 	CString sArgv;
 	CString sExecPath;
+	Lib::Shell::SHELL_TYPE eType;
 	DWORD dwDelay;
 	bool bVisible;
 
 	_EXECUTE_ITEM() {
+		eType = Lib::Shell::APP;
 		dwDelay = 0;
 		bVisible = true;
 	}
@@ -20,6 +22,7 @@ typedef struct _EXECUTE_ITEM
 		sPath = item.sPath;
 		sArgv = item.sArgv;
 		sExecPath = item.sExecPath;
+		eType = item.eType;
 		dwDelay = item.dwDelay;
 		bVisible = item.bVisible;
 

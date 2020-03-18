@@ -34,7 +34,9 @@ EXECUTE_ITEM CConfig::ReadExecute( CString sName )
 	ini.Read(_T("Setting"), _T("ExecPath"), item.sExecPath);
 	ini.Read(_T("Setting"), _T("Delay"), item.dwDelay);
 	ini.Read(_T("Setting"), _T("Visible"), item.bVisible);
-
+	int nType = item.eType;
+	ini.Read(_T("Setting"), _T("Type"), nType);
+	item.eType = (Lib::Shell::SHELL_TYPE)nType;
 	return item;
 }
 
@@ -47,6 +49,7 @@ void CConfig::WriteExecute( EXECUTE_ITEM item )
 	ini.Write(_T("Setting"), _T("ExecPath"), item.sExecPath);
 	ini.Write(_T("Setting"), _T("Delay"), item.dwDelay);
 	ini.Write(_T("Setting"), _T("Visible"), item.bVisible);
+	ini.Write(_T("Setting"), _T("Type"), (int)item.eType);
 }
 
 HOTKEY_ITEM CConfig::ReadHotKey( DWORD dwHotKey )

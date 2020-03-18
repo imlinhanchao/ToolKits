@@ -26,7 +26,9 @@ protected:
 
 	void WriteUi(EXECUTE_ITEM item);
 	EXECUTE_ITEM ReadUi(void);
+	void InitUi(void);
 
 public:
 	EXECUTE_ITEM m_exec;
+	afx_msg void OnBnClickedBtnTry();
 };
